@@ -2,8 +2,10 @@
 
 import 'package:expense_2/components/custom_nav_bar.dart';
 import 'package:expense_2/components/group_card.dart';
+import 'package:expense_2/components/menu_items.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,7 +26,6 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(
               height: MediaQuery.sizeOf(context).height * 0.15,
-              //color: Colors.red,
               width: MediaQuery.sizeOf(context).width * 0.9,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SingleChildScrollView(
               child: SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.3,
+                //height: MediaQuery.sizeOf(context).height * 0.3,
                 width: MediaQuery.sizeOf(context).width * 0.9,
                 child: Column(
                   children: [
@@ -69,6 +70,9 @@ class _HomePageState extends State<HomePage> {
                                 );
                         }),
                     )
+                  ,
+                  const SizedBox(height: 20,),
+                  const MenuItems(),
                   ],
                 ),
               ),

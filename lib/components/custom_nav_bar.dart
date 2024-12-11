@@ -27,11 +27,11 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              icon: Icon(Icons.home_outlined, color: _selectedIndex == 0 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white),
+              icon: Icon(Icons.home_outlined, color: _selectedIndex == 0 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white, size: 25,),
               onPressed: () => _onItemTapped(0),
             ),
             IconButton(
-              icon: Icon(HeroIcons.user_group, color: _selectedIndex == 1 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white),
+              icon: Icon(HeroIcons.user_group, color: _selectedIndex == 1 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white, size: 25,),
               onPressed: () => _onItemTapped(1),
             ),
             Center(
@@ -42,8 +42,8 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                   child: GestureDetector(
                     onTap: ()=>{},
                     child: Container(
-                      width: 55,
-                      height: 95,
+                      width: 60,
+                      height: 130,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [Colors.amber, Colors.orange],
@@ -72,11 +72,11 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
               ),
             ),
             IconButton(
-              icon: Icon(HeroIcons.rectangle_group, color: _selectedIndex == 2 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white),
+              icon: Icon(HeroIcons.rectangle_group, color: _selectedIndex == 2 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white, size: 25,),
               onPressed: () => _onItemTapped(2),
             ),
             IconButton(
-              icon: Icon(HeroIcons.bell_alert, color: _selectedIndex == 3 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white),
+              icon: Icon(HeroIcons.bell_alert, color: _selectedIndex == 3 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white, size: 25,),
               onPressed: () => _onItemTapped(3),
             ),
         ],
