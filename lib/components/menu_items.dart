@@ -11,7 +11,7 @@ class MenuItems extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     //color: Colors.red,
                     child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
                           children: [
@@ -29,7 +29,7 @@ class MenuItems extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            CircleAvatar(radius: 30, backgroundColor: Color.fromARGB(255, 85, 94, 105), child: Center(child: Icon(FontAwesome.user_group_solid, size: 25, color: Colors.white,)),),
+                            CircleAvatar(radius: 30, backgroundColor: Color.fromARGB(255, 85, 94, 105), child: Center(child: Icon(HeroIcons.user_group, size: 30, color: Colors.white,)),),
                             SizedBox(height: 5,),
                             Text("Groups", textAlign: TextAlign.center, style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w600),)
                           ],

@@ -31,7 +31,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
               onPressed: () => _onItemTapped(0),
             ),
             IconButton(
-              icon: Icon(HeroIcons.user_group, color: _selectedIndex == 1 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white, size: 25,),
+              icon: Icon(FontAwesome.user_group_solid, color: _selectedIndex == 1 ? const Color.fromARGB(255, 253, 200, 94) : Colors.white, size: 20,),
               onPressed: () => _onItemTapped(1),
             ),
             Center(

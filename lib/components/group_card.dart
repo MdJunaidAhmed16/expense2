@@ -63,7 +63,7 @@ class _GroupCardState extends State<GroupCard> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[300],
                     foregroundColor: Colors.black,
-                    fixedSize: const Size(120, 45),
+                    fixedSize: Size(MediaQuery.sizeOf(context).width * 0.3 , MediaQuery.sizeOf(context).width * 0.11),
                   ),
                 child: Text("Review later", style : GoogleFonts.ubuntu(fontWeight: FontWeight.normal, color: Colors.black45, fontSize: 12))),
                 ElevatedButton(
@@ -71,7 +71,7 @@ class _GroupCardState extends State<GroupCard> {
                   style: ElevatedButton.styleFrom(
                     //backgroundColor: Colors.grey[300],
                     //foregroundColor: Colors.black,
-                    fixedSize: const Size(120, 45),
+                    fixedSize: Size(MediaQuery.sizeOf(context).width * 0.3 , MediaQuery.sizeOf(context).width * 0.11),
                   ),
                 child: Text("Split Now", style : GoogleFonts.ubuntu(fontWeight: FontWeight.bold, color: Colors.black45, fontSize: 12)))
               ], 
