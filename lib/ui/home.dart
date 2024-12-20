@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("OnGoing",
+                    Text("Businesses",
                         style: GoogleFonts.ubuntu(
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15.0),
                             child: Container(
-                              height: MediaQuery.of(context).size.height * 0.117,
+                              height: MediaQuery.of(context).size.height * 0.06,
                               decoration: const BoxDecoration(
                                 color: Color.fromARGB(255, 225, 138, 144),
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -137,22 +137,22 @@ class _HomePageState extends State<HomePage> {
                                               children: [
                                                 CircleAvatar(radius: 16, backgroundImage:AssetImage("assets/avatar.png"),),
                                                 SizedBox(width: 10,),
-                                                Text('Movie Tickets', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
+                                                Text('Movie Tickets : ', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
+                                                Text("\$20.00", style: TextStyle(color: Colors.white, fontSize: 16.1, fontWeight: FontWeight.bold),)
                                               ],
                                             ),
-                                            SizedBox(height: 10,),
-                                            Text('Total Bill', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),),
-                                            Text("\$20.00", style: TextStyle(color: Colors.white, fontSize: 16.1, fontWeight: FontWeight.bold),)
+                                            
+                                            
                                           ],
                                         ),
                                         ElevatedButton(onPressed: ()=>{},style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(10)
                                           ),
-                                          fixedSize: Size(MediaQuery.sizeOf(context).width * 0.2, MediaQuery.of(context).size.height * 0.09,),
+                                          fixedSize: Size(MediaQuery.sizeOf(context).width * 0.23, MediaQuery.of(context).size.height * 0.06,),
                                           backgroundColor: const Color.fromARGB(231, 255, 255, 255),
                                         ), 
-                                        child: const Text("Send", style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),),
+                                        child: Text("Pay", style: TextStyle(color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold),),
                                         ),
                                       ],
                                     ),

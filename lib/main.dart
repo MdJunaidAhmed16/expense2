@@ -1,20 +1,20 @@
-import 'package:expense_2/ui/home.dart';
+import 'package:expense_2/routes/route_generator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final RouteGenerator _router = RouteGenerator();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SafeArea(
-        child: 
-          HomePage(),
+    return SafeArea(
+      child: MaterialApp(
+        initialRoute: '/txnPage',
+        onGenerateRoute: _router.routeGenerate,
       ),
     );
   }

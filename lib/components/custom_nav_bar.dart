@@ -40,7 +40,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
                 child: ClipPath(
                   clipper: HexagonClipper(),
                   child: GestureDetector(
-                    onTap: ()=>{},
+                    onTap: ()=>Navigator.pushNamed(context, '/txnPage'),
                     child: Container(
                       width: 60,
                       height: 130,
