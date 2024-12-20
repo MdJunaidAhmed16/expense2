@@ -1,8 +1,6 @@
 import 'package:expense_2/components/custom_outlinned_button.dart';
 import 'package:expense_2/components/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_upi_india/flutter_upi_india.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class TxnForm extends StatefulWidget {
   const TxnForm({super.key});
@@ -13,17 +11,8 @@ class TxnForm extends StatefulWidget {
 
 class _TxnFormState extends State<TxnForm> {
   final _formKey = GlobalKey<FormState>();
-  List<ApplicationMeta>? _apps;
 
-  @override
-  void initState() {
-    Future.delayed(const Duration(milliseconds: 0), () async {
-      _apps = await UpiPay.getInstalledUpiApplications(
-          statusType: UpiApplicationDiscoveryAppStatusType.all);
-      setState(() {});
-    });
-    super.initState();
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,28 +103,12 @@ class _TxnFormState extends State<TxnForm> {
                         builder: (BuildContext context) {
                           return SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.2,
-                            child: GridView.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount:4, // number of items in each row
-                                  mainAxisSpacing: 8.0, // spacing between rows
-                                  crossAxisSpacing:8.0, // spacing between columns
-                                ),
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    child:  Column(
-                                      children: [
-                                        _apps![index].iconImage(30),
-                                        Text(_apps![index].upiApplication.appName, style: const TextStyle(color: Colors.white),),
-                                      ],
-                                    ),
-                                  );
-                                }),
+                            
                           );
                         }),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.greenAccent,
-                      iconColor: Colors.black,
+                      //iconColor: Colors.black,
                     ),
                     child: const Row(
                       children: [
@@ -160,7 +133,7 @@ class _TxnFormState extends State<TxnForm> {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 252, 184, 96),
-                      iconColor: Colors.black,
+                      //iconColor: Colors.black,
                     ),
                     child: const Row(
                       children: [
