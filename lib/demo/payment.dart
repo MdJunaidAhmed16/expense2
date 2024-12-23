@@ -13,14 +13,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   Future<void> makePayment() async {
     try {
-      final upiApps = await FlutterUPIPayment.getUPIApps();
+      final upiApps = await FlutterUpiPayment.getUPIApps();
 
       if (upiApps.isNotEmpty) {
-        final response = await FlutterUPIPayment.initiateTransaction(
+        final response = await FlutterUpiPayment.initiateTransaction(
           upiId: 'mohammedabidah15-1@oksbi',
           payeeName: 'Mohammed Abid Ahmed',
           amount: '1',
-          mode: '00',
+          mode: '05',
           orgId: '000000',
           appPackageName: upiApps[1].packageName,
           // transactionRef: 'TXN123',
