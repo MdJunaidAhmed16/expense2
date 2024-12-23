@@ -107,6 +107,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_upi_payment:
+    dependency: "direct main"
+    description:
+      path: "../../flutter_upi_payment"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   google_fonts:
     dependency: "direct main"
     description:

@@ -33,6 +33,8 @@ dependencies:
     sdk: flutter
   google_fonts: ^6.2.1
   icons_plus: ^5.0.0
+  flutter_upi_payment:
+    path: ../../flutter_upi_payment  # Or your actual plugin path  # Or your actual plugin path
 
 dev_dependencies:
   flutter_lints: ^4.0.0
