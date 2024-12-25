@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.2, // Set a specific height
+                      height: MediaQuery.sizeOf(context).height * 0.25, // Set a specific height
                       child: ListView.builder(
                         itemCount: 2,
                         itemBuilder: (context, index) {

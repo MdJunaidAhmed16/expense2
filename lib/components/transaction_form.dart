@@ -108,7 +108,7 @@ class _TxnFormState extends State<TxnForm> {
                         }),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.greenAccent,
-                      //iconColor: Colors.black,
+                      iconColor: Colors.black,
                     ),
                     child: const Row(
                       children: [
@@ -133,7 +133,7 @@ class _TxnFormState extends State<TxnForm> {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 252, 184, 96),
-                      //iconColor: Colors.black,
+                      iconColor: Colors.black,
                     ),
                     child: const Row(
                       children: [

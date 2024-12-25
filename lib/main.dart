@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp(
-        initialRoute: '/demo',
+        initialRoute: '/signup',
         onGenerateRoute: _router.routeGenerate,
       ),
     );
