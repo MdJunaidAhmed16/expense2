@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 class AuthService {
-  static const String baseUrl = 'http://192.168.140.232:8080/api/auth';
+  static const String baseUrl = 'http://1xxxxx/api/auth';
   static const String tokenKey = 'auth_token';
   static const String refreshTokenKey = 'refresh_token';
 

@@ -16,170 +16,296 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff27313b),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 10, bottom: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.15,
-                  width: MediaQuery.sizeOf(context).width * 0.9,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text.rich(TextSpan(
-                        children: [
-                          TextSpan(
-                              text: "Welcome Back\n",
-                              style: GoogleFonts.ubuntu(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.blueGrey.shade300,
-                                  fontSize: 15)),
-                          TextSpan(
-                              text: "Hi Mohammed Junaid",
-                              style: GoogleFonts.ubuntu(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 18)),
-                        ],
-                      )),
-                      GestureDetector(
-                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage())),
-                        child: const CircleAvatar(
-                          radius: 27,
-                          backgroundImage: AssetImage("assets/avatar.png"),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: const Color(0xff27313b),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Custom App Bar with Profile
+              _buildAppBar(),
+              
+              // Main Content
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Pending Bills",
-                        style: GoogleFonts.ubuntu(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontSize: 16)),
-                    Text("View all",
-                        style: GoogleFonts.ubuntu(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.blueGrey.shade300,
-                            fontSize: 15))
+                    // Quick Stats Cards
+                    _buildQuickStats(),
+                    
+                    // Pending Bills Section
+                    _buildSectionHeader('Pending Bills', onViewAll: () {}),
+                    _buildPendingBills(),
+                    
+                    // Quick Actions
+                    _buildQuickActions(),
+                    
+                    // Recent Activity
+                    _buildSectionHeader('Recent Activity', onViewAll: () {}),
+                    _buildRecentActivity(),
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: const CustomBottomBar(),
+    );
+  }
+
+  Widget _buildAppBar() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.05),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Welcome Back',
+                style: GoogleFonts.ubuntu(
+                  fontSize: 14,
+                  color: Colors.grey[400],
                 ),
-                SizedBox(
-                  width: 420,
-                  height: 220,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 3,
-                      itemBuilder: (BuildContext context, index) {
-                        return const Padding(
-                          padding: EdgeInsets.only(
-                              right: 16.0), // Add space after each card
-                          child: GroupCard(),
-                        );
-                      }),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Hi Mohammed Junaid',
+                style: GoogleFonts.ubuntu(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const MenuItems(),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+            ],
+          ),
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.amber, width: 2),
+              ),
+              child: const CircleAvatar(
+                radius: 24,
+                backgroundImage: AssetImage("assets/avatar.png"),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuickStats() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        children: [
+          _buildStatCard(
+            'Total Balance',
+            '\$2,459.50',
+            Icons.account_balance_wallet,
+            Colors.amber,
+          ),
+          const SizedBox(width: 15),
+          _buildStatCard(
+            'This Month',
+            '\$859.20',
+            Icons.date_range,
+            Colors.blue,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatCard(String title, String amount, IconData icon, Color color) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: color.withOpacity(0.2)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: color, size: 24),
+            const SizedBox(height: 12),
+            Text(
+              title,
+              style: TextStyle(color: Colors.grey[400], fontSize: 12),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              amount,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionHeader(String title, {required VoidCallback onViewAll}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: GoogleFonts.ubuntu(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          TextButton(
+            onPressed: onViewAll,
+            child: Text(
+              'View all',
+              style: GoogleFonts.ubuntu(
+                color: Colors.amber,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Keep your existing GroupCard implementation but wrap it in a Container
+  Widget _buildPendingBills() {
+    return SizedBox(
+      height: 220,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.only(right: 16),
+            child: GroupCard(),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildQuickActions() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _buildActionButton(Icons.arrow_upward, 'Send', Colors.green),
+          _buildActionButton(Icons.arrow_downward, 'Request', Colors.blue),
+          _buildActionButton(Icons.group_add, 'Split', Colors.orange),
+          _buildActionButton(Icons.receipt_long, 'Bills', Colors.purple),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButton(IconData icon, String label, Color color) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, color: color),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: const TextStyle(color: Colors.white, fontSize: 12),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRecentActivity() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 2,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 225, 138, 144),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              const CircleAvatar(
+                radius: 20,
+                backgroundImage: AssetImage("assets/avatar.png"),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Businesses",
-                        style: GoogleFonts.ubuntu(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                            fontSize: 15)),
-                    Text("View all",
-                        style: GoogleFonts.ubuntu(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.blueGrey.shade300,
-                            fontSize: 15))
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                // !TODO displaying recent two unpaid or unreceived group bills would be nice
-                Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.28, // Set a specific height
-                      child: ListView.builder(
-                        itemCount: 2,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 15.0),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.066,
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 225, 138, 144),
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                CircleAvatar(radius: 16, backgroundImage:AssetImage("assets/avatar.png"),),
-                                                SizedBox(width: 10,),
-                                                Text('Movie Tickets : ', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
-                                                Text("\$20.00", style: TextStyle(color: Colors.white, fontSize: 16.1, fontWeight: FontWeight.bold),)
-                                              ],
-                                            ),
-                                            
-                                            
-                                          ],
-                                        ),
-                                        ElevatedButton(onPressed: ()=>{},style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10)
-                                          ),
-                                          fixedSize: Size(MediaQuery.sizeOf(context).width * 0.23, MediaQuery.of(context).size.height * 0.06,),
-                                          backgroundColor: const Color.fromARGB(231, 255, 255, 255),
-                                        ), 
-                                        child: Text("Pay", style: TextStyle(color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold),),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                    const Text(
+                      'Movie Tickets',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'Pending payment',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 12,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 15,
+              ),
+              const Text(
+                '\$20.00',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
-                
-              ],
-            ),
+              ),
+            ],
           ),
-        ),
-        extendBody: true,  // <--- do not forget to mark this as true
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        bottomNavigationBar: const CustomBottomBar());
+        );
+      },
+    );
   }
 }
