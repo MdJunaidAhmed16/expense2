@@ -11,6 +11,9 @@ class TxnForm extends StatefulWidget {
 
 class _TxnFormState extends State<TxnForm> {
   final _formKey = GlobalKey<FormState>();
+  final _upiIdController = TextEditingController();
+  final _amountController = TextEditingController();
+  final _descriptionController = TextEditingController();
 
   
   @override
@@ -24,16 +27,16 @@ class _TxnFormState extends State<TxnForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomTextField(
+              CustomTextField(
                 fieldName: "UPI ID",
-                regexPattern: r'^[a-zA-z0-9]+@ok[a-zA-z]+$',
+                regexPattern: r'^[a-zA-z0-9]+@ok[a-zA-z]+$', controller: _upiIdController,
               ),
               const SizedBox(
                 height: 20,
               ),
-              const CustomTextField(
+              CustomTextField(
                 fieldName: "Amount",
-                regexPattern: r'^[0-9]+$',
+                regexPattern: r'^[0-9]+$', controller: _amountController,
               ),
               const SizedBox(
                 height: 20,
@@ -86,9 +89,9 @@ class _TxnFormState extends State<TxnForm> {
               const SizedBox(
                 height: 20,
               ),
-              const CustomTextField(
+              CustomTextField(
                 fieldName: "Description",
-                regexPattern: r'^[a-zA-z0-9]+$',
+                regexPattern: r'^[a-zA-z0-9]+$', controller: _amountController,
               ),
               const SizedBox(
                 height: 20,

@@ -31,10 +31,12 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  google_fonts: ^6.2.1
-  icons_plus: ^5.0.0
   flutter_upi_payment:
-    path: ../../flutter_upi_payment  # Or your actual plugin path  # Or your actual plugin path
+    path: ../../flutter_upi_payment
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  icons_plus: ^5.0.0
+  shared_preferences: ^2.3.4
 
 dev_dependencies:
   flutter_lints: ^4.0.0

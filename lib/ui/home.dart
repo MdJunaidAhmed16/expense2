@@ -1,6 +1,7 @@
 import 'package:expense_2/components/custom_nav_bar.dart';
 import 'package:expense_2/components/group_card.dart';
 import 'package:expense_2/components/menu_items.dart';
+import 'package:expense_2/ui/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,9 +44,12 @@ class _HomePageState extends State<HomePage> {
                                   fontSize: 18)),
                         ],
                       )),
-                      const CircleAvatar(
-                        radius: 27,
-                        backgroundImage: AssetImage("assets/avatar.png"),
+                      GestureDetector(
+                        onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage())),
+                        child: const CircleAvatar(
+                          radius: 27,
+                          backgroundImage: AssetImage("assets/avatar.png"),
+                        ),
                       )
                     ],
                   ),
@@ -111,14 +115,14 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.25, // Set a specific height
+                      height: MediaQuery.sizeOf(context).height * 0.28, // Set a specific height
                       child: ListView.builder(
                         itemCount: 2,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15.0),
                             child: Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.066,
                               decoration: const BoxDecoration(
                                 color: Color.fromARGB(255, 225, 138, 144),
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -174,6 +178,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+        extendBody: true,  // <--- do not forget to mark this as true
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: const CustomBottomBar());
   }
 }
